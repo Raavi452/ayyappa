@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .calculator {
+            background-color: white;
+            width: 260px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .display {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        button {
+            width: 50px;
+            height: 45px;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+
+    <script>
+        let currentInput = "";
+
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById("display").value = currentInput;
+        }
+
+        function appendOperator(operator) {
+            currentInput += " " + operator + " ";
+            document.getElementById("display").value = currentInput;
+        }
+
+        function calculateResult() {
+            try {
+                let result = eval(currentInput);
+                document.getElementById("display").value = result;
+                currentInput = result.toString();
+            } catch {
+                document.getElementById("display").value = "Error";
+                currentInput = "";
+            }
+        }
+
+        function clearDisplay() {
+            currentInput = "";
+            document.getElementById("display").value = "";
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <input type="text" id="display" class="display" readonly>
+
+        <div>
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendOperator('/')">/</button>
+        </div>
+
+        <div>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendOperator('*')">*</button>
+        </div>
+
+        <div>
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="appendOperator('-')">-</button>
+        </div>
+
+        <div>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="appendOperator('+')">+</button>
+        </div>
+    </div>
+
+</body>
+</html>
